@@ -6,6 +6,7 @@ preview*.png
 dist/
 *.url
 login.log
+.commitmsg
 .DS_Store
 node_modules/
 .wrangler/

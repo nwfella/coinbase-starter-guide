@@ -3,6 +3,9 @@
 _*.html
 _*.png
 preview*.png
+dist/
+*.url
+login.log
 .DS_Store
 node_modules/
 .wrangler/

@@ -2,7 +2,8 @@
 
 A single-file, zero-dependency landing page that walks someone through Coinbase's
 new-customer referral promotion: open an account through a referral link, buy
-$15+ of any crypto, receive $20 in Bitcoin about 48 hours after the first trade.
+$15+ of any crypto, receive $20 in Bitcoin 45 days after the qualifying purchase. New
+customers only.
 
 **Live:** _pending Cloudflare Pages deploy_ — see [Deploy](#deploy)
 

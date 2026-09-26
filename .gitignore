@@ -1,0 +1,8 @@
+# scratch / local-only artifacts — never uploaded to Pages
+.preview/
+_*.html
+_*.png
+preview*.png
+.DS_Store
+node_modules/
+.wrangler/

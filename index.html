@@ -1,103 +1,345 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="blue">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coinbase New-Customer Guide — Buy $15, Get $20 in Bitcoin</title>
-<meta name="description" content="A plain-English walkthrough of Coinbase's new-customer referral promotion: open an account with a referral link, buy $15 of any crypto, receive $20 in Bitcoin 45 days after the qualifying purchase. New customers only. Full eligibility rules and what it actually nets you.">
+<meta name="description" content="A plain-English walkthrough of Coinbase's new-customer referral promotion: open an account with a referral link, buy $15 of any crypto, receive $20 in Bitcoin within 5–15 days of the qualifying purchase. New customers only. Full eligibility rules and what it actually nets you.">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0052ff">
+<meta name="theme-color" id="metaTheme" content="#0052ff">
+<script>
+/* Set the theme before first paint so switching never flashes. */
+(function(){try{var d=document.documentElement,t=localStorage.getItem('cb-guide-theme');if(t!=='blue'&&t!=='dark'&&t!=='light')t=d.getAttribute('data-theme');if(t!=='blue'&&t!=='dark'&&t!=='light')t='blue';d.setAttribute('data-theme',t);}catch(e){}})();
+</script>
 <meta property="og:type" content="article">
 <meta property="og:title" content="Coinbase New-Customer Guide — Buy $15, Get $20 in Bitcoin">
 <meta property="og:description" content="Step-by-step walkthrough of the new-customer referral promotion, plus the exact eligibility rules and honest math on what it nets you.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230052ff'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23fff' stroke-width='3.5'/%3E%3C/svg%3E">
 <style>
+  /* ============================================================
+     THEME SYSTEM
+     Three themes swap one set of custom properties:
+       blue  (default) - Coinbase blue canvas, white cards
+       dark            - neutral near-black
+       light           - the original clean white
+     Canvas = the page background. Surface = cards/steps/panels.
+     Text colour differs between the two, so ink/body/muted/link
+     exist in both a canvas-* and a surface-* flavour.
+     ============================================================ */
+
   :root{
-    --blue:#0052ff;
-    --blue-dark:#0040c9;
-    --blue-tint:#eef3ff;
-    --ink:#0b0d12;
-    --body:#3d4351;
-    --muted:#6b7280;
-    --line:#e3e6ec;
-    --card:#ffffff;
-    --bg:#f7f8fb;
+    --maxw:940px;
+    --radius:14px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  }
+
+  /* ---------- Coinbase Blue (default) ---------- */
+  html[data-theme="blue"]{
+    --bg:#0052ff;
+    --bg-image:radial-gradient(1100px 520px at 50% -8%, #3577ff 0%, rgba(53,119,255,0) 62%),
+               linear-gradient(180deg,#0052ff 0%,#003fbe 100%);
+    --canvas-ink:#ffffff;
+    --canvas-body:rgba(255,255,255,.88);
+    --canvas-muted:rgba(255,255,255,.70);
+    --link:#ffffff;
+    --link-decoration:underline;
+    --surface:#ffffff;
+    --surface-ink:#0b0d12;
+    --surface-body:#3d4351;
+    --surface-muted:#6b7280;
+    --surface-link:#0052ff;
+    --line:#e0e6f3;
+    --line-soft:#eef2fa;
+    --chip-bg:rgba(255,255,255,.14);
+    --chip-ink:rgba(255,255,255,.92);
+    --chip-line:rgba(255,255,255,.30);
+    --tag-bg:rgba(255,255,255,.16);
+    --tag-ink:#ffffff;
+    --tag-line:rgba(255,255,255,.32);
+    --topbar-bg:rgba(0,58,186,.82);
+    --topbar-line:rgba(255,255,255,.16);
+    --topbar-ink:#ffffff;
+    --footer-bg:rgba(0,45,150,.40);
+    --footer-ink:rgba(255,255,255,.78);
+    --footer-link:#ffffff;
+    --seg-bg:rgba(255,255,255,.12);
+    --seg-line:rgba(255,255,255,.24);
+    --seg-ink:rgba(255,255,255,.80);
+    --seg-active-bg:#ffffff;
+    --seg-active-ink:#0052ff;
+    --btn-bg:#ffffff;
+    --btn-ink:#0052ff;
+    --btn-hover:#eef3ff;
+    --ghost-bg:rgba(255,255,255,.14);
+    --ghost-ink:#ffffff;
+    --ghost-line:rgba(255,255,255,.34);
+    --ghost-hover:rgba(255,255,255,.24);
+    --accent:#0052ff;
+    --accent-tint:#eef3ff;
+    --accent-tint-line:#d6e2ff;
+    --shadow:0 1px 2px rgba(0,20,70,.10), 0 14px 34px -16px rgba(0,20,70,.45);
+    --shadow-accent:0 1px 2px rgba(0,20,70,.18), 0 10px 24px -12px rgba(0,20,70,.45);
+    --hover:#f7f9ff;
+    --track:rgba(0,32,110,.45);
+    --track-fill:#ffffff;
+    --code-bg:#f0f3fa;
+    --callout-bg:#fff6e5;
+    --callout-line:#e0a83a;
+    --callout-ink:#5d4100;
+    --callout-ink-strong:#3f2c00;
+    --callout-blue-bg:#eef3ff;
+    --callout-blue-line:#0052ff;
+    --callout-blue-ink:#123a8f;
+    --callout-blue-ink-strong:#0b2a6b;
     --green:#067b4a;
     --green-tint:#e8f6ef;
-    --amber:#8a5a00;
-    --amber-tint:#fff6e5;
-    --radius:14px;
-    --shadow:0 1px 2px rgba(11,13,18,.05), 0 8px 24px -12px rgba(11,13,18,.14);
-    --maxw:940px;
+    --green-line:#c3e7d5;
+    --red:#c02d2d;
+    --num-bg:#eef3ff;
+    --num-ink:#0052ff;
+    --num-line:#d6e2ff;
+    color-scheme:light;
   }
+
+  /* ---------- Dark ---------- */
+  html[data-theme="dark"]{
+    --bg:#0a0b0d;
+    --bg-image:radial-gradient(1000px 520px at 50% -10%, rgba(59,123,255,.22) 0%, rgba(59,123,255,0) 60%),
+               linear-gradient(180deg,#0a0b0d 0%,#0d0f13 100%);
+    --canvas-ink:#ffffff;
+    --canvas-body:#a9b0be;
+    --canvas-muted:#7c8391;
+    --link:#7aa6ff;
+    --link-decoration:none;
+    --surface:#131519;
+    --surface-ink:#ffffff;
+    --surface-body:#b7bdc9;
+    --surface-muted:#888f9c;
+    --surface-link:#7aa6ff;
+    --line:#24272e;
+    --line-soft:#1c1f24;
+    --chip-bg:#181b21;
+    --chip-ink:#c9cfdb;
+    --chip-line:#24272e;
+    --tag-bg:rgba(59,123,255,.14);
+    --tag-ink:#8fb4ff;
+    --tag-line:rgba(59,123,255,.34);
+    --topbar-bg:rgba(10,11,13,.86);
+    --topbar-line:#1e2126;
+    --topbar-ink:#ffffff;
+    --footer-bg:#0d0e11;
+    --footer-ink:#8a919e;
+    --footer-link:#7aa6ff;
+    --seg-bg:#131519;
+    --seg-line:#24272e;
+    --seg-ink:#a9b0be;
+    --seg-active-bg:#3b7bff;
+    --seg-active-ink:#ffffff;
+    --btn-bg:#3b7bff;
+    --btn-ink:#ffffff;
+    --btn-hover:#5690ff;
+    --ghost-bg:#131519;
+    --ghost-ink:#ffffff;
+    --ghost-line:#24272e;
+    --ghost-hover:#181b21;
+    --accent:#3b7bff;
+    --accent-tint:rgba(59,123,255,.14);
+    --accent-tint-line:rgba(59,123,255,.34);
+    --shadow:0 1px 2px rgba(0,0,0,.6), 0 12px 32px -16px rgba(0,0,0,.85);
+    --shadow-accent:0 8px 20px -12px rgba(59,123,255,.85);
+    --hover:#181b21;
+    --track:#24272e;
+    --track-fill:#3b7bff;
+    --code-bg:#181b21;
+    --callout-bg:rgba(255,190,80,.10);
+    --callout-line:#c99a3d;
+    --callout-ink:#f2d8a8;
+    --callout-ink-strong:#ffe9c4;
+    --callout-blue-bg:rgba(59,123,255,.12);
+    --callout-blue-line:#3b7bff;
+    --callout-blue-ink:#c3d6ff;
+    --callout-blue-ink-strong:#e2ebff;
+    --green:#4fd39a;
+    --green-tint:rgba(79,211,154,.13);
+    --green-line:rgba(79,211,154,.30);
+    --red:#ff8080;
+    --num-bg:rgba(59,123,255,.14);
+    --num-ink:#8fb4ff;
+    --num-line:rgba(59,123,255,.34);
+    color-scheme:dark;
+  }
+
+  /* ---------- Light ---------- */
+  html[data-theme="light"]{
+    --bg:#f7f8fb;
+    --bg-image:none;
+    --canvas-ink:#0b0d12;
+    --canvas-body:#3d4351;
+    --canvas-muted:#6b7280;
+    --link:#0052ff;
+    --link-decoration:none;
+    --surface:#ffffff;
+    --surface-ink:#0b0d12;
+    --surface-body:#3d4351;
+    --surface-muted:#6b7280;
+    --surface-link:#0052ff;
+    --line:#e3e6ec;
+    --line-soft:#eef0f4;
+    --chip-bg:#ffffff;
+    --chip-ink:#6b7280;
+    --chip-line:#e3e6ec;
+    --tag-bg:#eef3ff;
+    --tag-ink:#0052ff;
+    --tag-line:#d6e2ff;
+    --topbar-bg:rgba(255,255,255,.92);
+    --topbar-line:#e3e6ec;
+    --topbar-ink:#0b0d12;
+    --footer-bg:#ffffff;
+    --footer-ink:#6b7280;
+    --footer-link:#0052ff;
+    --seg-bg:#ffffff;
+    --seg-line:#e3e6ec;
+    --seg-ink:#3d4351;
+    --seg-active-bg:#0052ff;
+    --seg-active-ink:#ffffff;
+    --btn-bg:#0052ff;
+    --btn-ink:#ffffff;
+    --btn-hover:#0040c9;
+    --ghost-bg:#ffffff;
+    --ghost-ink:#0b0d12;
+    --ghost-line:#e3e6ec;
+    --ghost-hover:#fcfdff;
+    --accent:#0052ff;
+    --accent-tint:#eef3ff;
+    --accent-tint-line:#d6e2ff;
+    --shadow:0 1px 2px rgba(11,13,18,.05), 0 8px 24px -12px rgba(11,13,18,.14);
+    --shadow-accent:0 1px 2px rgba(0,82,255,.30), 0 10px 22px -12px rgba(0,82,255,.75);
+    --hover:#fafbfe;
+    --track:#e6e9f0;
+    --track-fill:#0052ff;
+    --code-bg:#f0f2f6;
+    --callout-bg:#fff6e5;
+    --callout-line:#c99a3d;
+    --callout-ink:#5d4100;
+    --callout-ink-strong:#4a3400;
+    --callout-blue-bg:#eef3ff;
+    --callout-blue-line:#0052ff;
+    --callout-blue-ink:#123a8f;
+    --callout-blue-ink-strong:#0d2f78;
+    --green:#067b4a;
+    --green-tint:#e8f6ef;
+    --green-line:#c3e7d5;
+    --red:#c02d2d;
+    --num-bg:#eef3ff;
+    --num-ink:#0052ff;
+    --num-line:#d6e2ff;
+    color-scheme:light;
+  }
+
+  /* ---------- base ---------- */
   *,*::before,*::after{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%;background-color:var(--bg)}
   body{
     margin:0;
-    background:var(--bg);
-    color:var(--body);
-    font:16px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    background-color:var(--bg);
+    background-image:var(--bg-image);
+    background-repeat:no-repeat;
+    color:var(--canvas-body);
+    font:16px/1.62 var(--font);
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-  h1,h2,h3{color:var(--ink);line-height:1.2;letter-spacing:-.02em;margin:0}
-  a{color:var(--blue)}
-  code{font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#f0f2f6;border:1px solid var(--line);border-radius:5px;padding:1px 5px;overflow-wrap:break-word;word-break:normal}
+  h1,h2,h3{line-height:1.2;letter-spacing:-.02em;margin:0;color:var(--canvas-ink)}
+  a{color:var(--link);text-decoration:var(--link-decoration);text-underline-offset:3px}
+  code{
+    font:13px/1.4 var(--mono);background:var(--code-bg);border:1px solid var(--line);
+    border-radius:5px;padding:1px 5px;overflow-wrap:break-word;word-break:normal;color:var(--surface-ink);
+  }
+  /* links sitting on a card/surface */
+  .step a,.card a,details a,.disclosure a,.callout a{color:var(--surface-link)}
 
   /* ---------- top bar ---------- */
   .topbar{
-    background:rgba(255,255,255,.9);
+    background:var(--topbar-bg);
     backdrop-filter:saturate(180%) blur(10px);
-    border-bottom:1px solid var(--line);
+    border-bottom:1px solid var(--topbar-line);
     position:sticky;top:0;z-index:20;
   }
-  .topbar .wrap{display:flex;align-items:center;gap:12px;min-height:58px;flex-wrap:wrap}
-  .mark{display:flex;align-items:center;gap:9px;font-weight:650;color:var(--ink);font-size:15px;letter-spacing:-.01em}
+  .topbar .wrap{display:flex;align-items:center;gap:12px;min-height:58px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+  .mark{display:flex;align-items:center;gap:9px;font-weight:650;color:var(--topbar-ink);font-size:15px;letter-spacing:-.01em}
   .mark svg{display:block;flex:none}
+  .topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .tag{
-    margin-left:auto;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
-    color:var(--blue);background:var(--blue-tint);border:1px solid #d6e2ff;border-radius:999px;padding:4px 11px;
+    font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--tag-ink);background:var(--tag-bg);border:1px solid var(--tag-line);
+    border-radius:999px;padding:4px 11px;white-space:nowrap;
   }
+
+  /* ---------- theme switcher ---------- */
+  .themes{
+    display:inline-flex;gap:3px;background:var(--seg-bg);
+    border:1px solid var(--seg-line);border-radius:10px;padding:3px;
+  }
+  .theme-btn{
+    appearance:none;-webkit-appearance:none;border:0;background:transparent;color:var(--seg-ink);
+    font:inherit;font-size:12.5px;font-weight:650;letter-spacing:.01em;
+    padding:6px 11px;border-radius:7px;cursor:pointer;white-space:nowrap;
+    display:inline-flex;align-items:center;gap:6px;
+    transition:background .15s ease,color .15s ease;
+  }
+  .theme-btn:hover{color:var(--seg-active-ink)}
+  .theme-btn[aria-pressed="true"]{background:var(--seg-active-bg);color:var(--seg-active-ink)}
+  .theme-btn:focus-visible{outline:3px solid var(--seg-active-bg);outline-offset:2px}
+  .sw{width:10px;height:10px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(128,128,128,.45)}
+  .sw-blue{background:linear-gradient(135deg,#0052ff,#3577ff)}
+  .sw-dark{background:#0a0b0d}
+  .sw-light{background:#f7f8fb}
 
   /* ---------- hero ---------- */
   .hero{padding:56px 0 40px}
   .eyebrow{
     display:inline-flex;align-items:center;gap:8px;
-    font-size:13px;font-weight:600;color:var(--muted);
-    background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;margin-bottom:22px;
+    font-size:13px;font-weight:600;color:var(--chip-ink);
+    background:var(--chip-bg);border:1px solid var(--chip-line);
+    border-radius:999px;padding:5px 12px;margin-bottom:22px;
   }
   .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
   h1{font-size:clamp(30px,5.6vw,46px);font-weight:800;max-width:19ch}
-  .lede{font-size:clamp(17px,2.3vw,19px);max-width:60ch;margin:20px 0 0}
-  .lede strong{color:var(--ink);font-weight:650}
+  .lede{font-size:clamp(17px,2.3vw,19px);max-width:60ch;margin:20px 0 0;color:var(--canvas-body)}
+  .lede strong{color:var(--canvas-ink);font-weight:650}
 
   .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:30px}
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:9px;
-    background:var(--blue);color:#fff;text-decoration:none;
+    background:var(--btn-bg);color:var(--btn-ink);text-decoration:none;
     font-size:16px;font-weight:650;letter-spacing:-.01em;
     padding:15px 26px;border-radius:11px;border:0;cursor:pointer;
-    box-shadow:0 1px 2px rgba(0,82,255,.3), 0 10px 22px -12px rgba(0,82,255,.75);
+    box-shadow:var(--shadow-accent);
     transition:background .15s ease, transform .15s ease;
   }
-  .btn:hover{background:var(--blue-dark)}
+  .btn:hover{background:var(--btn-hover)}
   .btn:active{transform:translateY(1px)}
-  .btn:focus-visible,.ghost:focus-visible,.copy:focus-visible{outline:3px solid rgba(0,82,255,.35);outline-offset:2px}
+  .btn:focus-visible,.ghost:focus-visible,.copy:focus-visible{outline:3px solid var(--seg-active-bg);outline-offset:2px}
   .ghost{
-    display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);
-    color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;padding:14px 20px;border-radius:11px;
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--ghost-bg);border:1px solid var(--ghost-line);color:var(--ghost-ink);
+    text-decoration:none;font-weight:600;font-size:15px;padding:14px 20px;border-radius:11px;
   }
-  .ghost:hover{border-color:#c9d2e3;background:#fcfdff}
+  .ghost:hover{background:var(--ghost-hover)}
   .url-row{display:flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap}
-  .url-row code{font-size:13px;padding:7px 11px;background:#fff}
+  .url-row code{
+    font-size:13px;padding:7px 11px;background:var(--ghost-bg);
+    border-color:var(--ghost-line);color:var(--ghost-ink);
+  }
   .copy{
-    background:#fff;border:1px solid var(--line);border-radius:8px;color:var(--ink);
+    background:var(--ghost-bg);border:1px solid var(--ghost-line);border-radius:8px;color:var(--ghost-ink);
     font-size:13px;font-weight:600;padding:7px 13px;cursor:pointer;font-family:inherit;
   }
-  .copy:hover{border-color:#c9d2e3;background:#fcfdff}
-  .fineprint{font-size:13.5px;color:var(--muted);margin-top:16px;max-width:62ch}
+  .copy:hover{background:var(--ghost-hover)}
+  .fineprint{font-size:13.5px;color:var(--canvas-muted);margin-top:16px;max-width:62ch}
 
-  /* ---------- generic section ---------- */
+  /* ---------- sections ---------- */
   section.block{padding:34px 0}
   .sec-head{margin-bottom:22px}
   .sec-head h2{font-size:clamp(22px,3.4vw,29px);font-weight:750}
@@ -106,123 +348,113 @@
   /* ---------- steps ---------- */
   .steps{display:grid;gap:14px;counter-reset:s}
   .step{
-    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:20px 22px 20px 22px;box-shadow:var(--shadow);
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;box-shadow:var(--shadow);
     display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
     transition:border-color .15s ease, opacity .2s ease;
   }
   .step .num{
     counter-increment:s;
     width:34px;height:34px;border-radius:10px;flex:none;
-    background:var(--blue-tint);color:var(--blue);
-    display:grid;place-items:center;font-weight:750;font-size:15px;border:1px solid #d6e2ff;
+    background:var(--num-bg);color:var(--num-ink);
+    display:grid;place-items:center;font-weight:750;font-size:15px;border:1px solid var(--num-line);
   }
-  .step h3{font-size:17.5px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-  .step p{margin:0;font-size:15.5px}
+  .step h3{font-size:17.5px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:var(--surface-ink)}
+  .step p{margin:0;font-size:15.5px;color:var(--surface-body)}
   .step p + p{margin-top:9px}
-  .pill{
-    font-size:11.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
-    border-radius:999px;padding:3px 9px;white-space:nowrap;
-  }
-  .pill.gate{background:var(--amber-tint);color:var(--amber);border:1px solid #f0dcb4}
-  .pill.key{background:var(--blue-tint);color:var(--blue);border:1px solid #d6e2ff}
+  .pill{font-size:11.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;border-radius:999px;padding:3px 9px;white-space:nowrap}
+  .pill.gate{background:var(--callout-bg);color:var(--callout-ink);border:1px solid var(--callout-line)}
+  .pill.key{background:var(--accent-tint);color:var(--accent);border:1px solid var(--accent-tint-line)}
   .step.done{opacity:.62}
-  .step.done .num{background:var(--green-tint);color:var(--green);border-color:#c3e7d5}
+  .step.done .num{background:var(--green-tint);color:var(--green);border-color:var(--green-line)}
 
-  .tracker{
-    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-    margin:0 0 18px;font-size:14px;color:var(--muted);
-  }
-  .tracker label{display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:var(--ink);font-weight:550}
-  .tracker input{width:17px;height:17px;accent-color:var(--blue);cursor:pointer}
-  .progress{flex:1;min-width:120px;height:6px;background:#e6e9f0;border-radius:999px;overflow:hidden}
-  .progress i{display:block;height:100%;width:0;background:var(--blue);border-radius:999px;transition:width .25s ease}
+  .tracker{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 18px;font-size:14px;color:var(--canvas-muted)}
+  .tracker label{display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:var(--canvas-ink);font-weight:550}
+  .tracker input{width:17px;height:17px;accent-color:var(--accent);cursor:pointer}
+  .progress{flex:1;min-width:120px;height:6px;background:var(--track);border-radius:999px;overflow:hidden}
+  .progress i{display:block;height:100%;width:0;background:var(--track-fill);border-radius:999px;transition:width .25s ease}
 
-  /* ---------- callout / math ---------- */
-  .card{
-    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    box-shadow:var(--shadow);padding:22px;
-  }
+  /* ---------- cards / table / callouts ---------- */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
   .grid2{display:grid;gap:14px;grid-template-columns:1fr 1fr}
   @media(max-width:700px){.grid2{grid-template-columns:1fr}}
 
   table{width:100%;border-collapse:collapse;font-size:15px}
-  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--surface-body)}
+  th{font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--surface-muted);font-weight:700}
   tbody tr:last-child td{border-bottom:0}
-  td:first-child{color:var(--ink);font-weight:600;width:38%}
+  td:first-child{color:var(--surface-ink);font-weight:600;width:38%}
   .t-wrap{overflow-x:auto;margin:0 -22px;padding:0 22px}
   .net{color:var(--green);font-weight:650}
 
   .callout{
-    border-left:3px solid var(--amber);background:var(--amber-tint);
-    border-radius:0 10px 10px 0;padding:14px 18px;font-size:15px;color:#5d4100;
+    border-left:3px solid var(--callout-line);background:var(--callout-bg);
+    border-radius:0 10px 10px 0;padding:14px 18px;font-size:15px;color:var(--callout-ink);
   }
-  .callout strong{color:#4a3400}
-  .callout.blue{border-left-color:var(--blue);background:var(--blue-tint);color:#123a8f}
-  .callout.blue strong{color:#0d2f78}
+  .callout strong{color:var(--callout-ink-strong)}
+  .callout.blue{border-left-color:var(--callout-blue-line);background:var(--callout-blue-bg);color:var(--callout-blue-ink)}
+  .callout.blue strong{color:var(--callout-blue-ink-strong)}
   .callout + .callout{margin-top:12px}
 
-  /* ---------- rules list ---------- */
   .rules{list-style:none;margin:0;padding:0;display:grid;gap:11px}
-  .rules li{display:grid;grid-template-columns:auto 1fr;gap:11px;font-size:15.5px;align-items:start}
+  .rules li{display:grid;grid-template-columns:auto 1fr;gap:11px;font-size:15.5px;align-items:start;color:var(--surface-body)}
   .rules .ic{width:20px;height:20px;flex:none;margin-top:3px}
-  .rules b{color:var(--ink);font-weight:650}
-  .ic.no{color:#c02d2d}
+  .rules b{color:var(--surface-ink);font-weight:650}
+  .ic.no{color:var(--red)}
   .ic.yes{color:var(--green)}
 
   /* ---------- faq ---------- */
-  details{
-    background:var(--card);border:1px solid var(--line);border-radius:12px;
-    margin-bottom:10px;overflow:hidden;
-  }
-  details[open]{border-color:#cfd8ea}
+  details{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+  details[open]{border-color:var(--accent-tint-line)}
   summary{
-    cursor:pointer;padding:15px 46px 15px 18px;font-weight:625;color:var(--ink);font-size:15.5px;
+    cursor:pointer;padding:15px 46px 15px 18px;font-weight:625;color:var(--surface-ink);font-size:15.5px;
     list-style:none;position:relative;
   }
   summary::-webkit-details-marker{display:none}
   summary::after{
     content:"";position:absolute;right:20px;top:50%;width:9px;height:9px;margin-top:-6px;
-    border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+    border-right:2px solid var(--surface-muted);border-bottom:2px solid var(--surface-muted);
     transform:rotate(45deg);transition:transform .18s ease;
   }
   details[open] summary::after{transform:rotate(-135deg)}
-  summary:hover{background:#fafbfe}
-  details .ans{padding:0 18px 17px;font-size:15.5px}
+  summary:hover{background:var(--hover)}
+  details .ans{padding:0 18px 17px;font-size:15.5px;color:var(--surface-body)}
   details .ans p{margin:0 0 10px}
   details .ans p:last-child{margin-bottom:0}
 
   /* ---------- disclosure ---------- */
-  .disclosure{
-    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-    padding:22px;font-size:14.5px;
-  }
-  .disclosure h3{font-size:16px;margin-bottom:12px}
+  .disclosure{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;font-size:14.5px;color:var(--surface-body)}
+  .disclosure h3{font-size:16px;margin-bottom:12px;color:var(--surface-ink)}
+  .disclosure b{color:var(--surface-ink)}
   .disclosure p{margin:0 0 11px}
-  .disclosure p:last-child{margin-bottom:0}
   .disclosure ul{margin:0;padding-left:20px}
   .disclosure li{margin-bottom:7px}
+  .disclosure li::marker{color:var(--surface-muted)}
 
+  /* ---------- footer ---------- */
   footer{
-    margin-top:44px;border-top:1px solid var(--line);background:#fff;padding:26px 0 40px;
-    font-size:14px;color:var(--muted);
+    margin-top:44px;border-top:1px solid var(--topbar-line);background:var(--footer-bg);
+    padding:26px 0 40px;font-size:14px;color:var(--footer-ink);
   }
   footer .wrap{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
-  footer a{text-decoration:none;font-weight:600}
+  footer a{color:var(--footer-link);text-decoration:none;font-weight:600}
   footer a:hover{text-decoration:underline}
   footer .sp{margin-left:auto}
 
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important;animation:none !important}
   }
+  @media(max-width:640px){
+    .tag{display:none}
+  }
   @media(max-width:560px){
     .hero{padding:36px 0 26px}
     .step{grid-template-columns:1fr;gap:12px}
     .step .num{width:30px;height:30px}
-    .tag{margin-left:0}
     .btn{width:100%}
     .cta-row{gap:10px}
+    .theme-btn{padding:6px 8px}
+    .theme-btn .lbl{display:none}
   }
 </style>
 </head>
@@ -234,7 +466,14 @@
       <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0052ff"/><circle cx="16" cy="16" r="7" fill="none" stroke="#fff" stroke-width="3.5"/></svg>
       Coinbase New-Customer Guide
     </span>
-    <span class="tag">Referral page</span>
+    <div class="topbar-right">
+      <span class="tag">Referral page</span>
+      <div class="themes" role="group" aria-label="Colour theme">
+        <button type="button" class="theme-btn" data-theme-set="blue" aria-pressed="true" aria-label="Coinbase Blue theme" title="Coinbase Blue theme"><i class="sw sw-blue" aria-hidden="true"></i><span class="lbl">Blue</span></button>
+        <button type="button" class="theme-btn" data-theme-set="dark" aria-pressed="false" aria-label="Dark theme" title="Dark theme"><i class="sw sw-dark" aria-hidden="true"></i><span class="lbl">Dark</span></button>
+        <button type="button" class="theme-btn" data-theme-set="light" aria-pressed="false" aria-label="Light theme" title="Light theme"><i class="sw sw-light" aria-hidden="true"></i><span class="lbl">Light</span></button>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -248,7 +487,7 @@
       <p class="lede">
         Coinbase is running a new-customer referral promotion: open an account through a referral
         link, make a first purchase of at least <strong>$15 of any crypto</strong>, and
-        <strong>$20 in Bitcoin</strong> is paid into your account <strong>45 days after that
+        <strong>$20 in Bitcoin</strong> is paid into your account <strong>within 5–15 days of that
         purchase</strong>. It is <strong>new customers only</strong>. This page walks through the exact
         sequence, the full eligibility rules, and the honest math on what it actually nets you.
       </p>
@@ -340,11 +579,11 @@
         <article class="step" data-step="4">
           <span class="num" aria-hidden="true">4</span>
           <div>
-            <h3>Wait 45 days for the reward to be paid</h3>
+            <h3>Wait 5–15 days for the reward to be paid</h3>
             <p>
-              The $20 in Bitcoin is paid <b>45 days after your qualifying purchase</b> — not
-              immediately, and not within a day or two. Set a reminder instead of refreshing your
-              balance; the payout window is the single most misunderstood part of this offer.
+              The $20 in Bitcoin is paid <b>within 5–15 days of your qualifying purchase</b> — not
+              instantly. Coinbase processes eligible reward payouts inside that window, so budget a
+              fortnight before you start wondering where it is.
             </p>
             <p>
               The $20 arrives <b>in Bitcoin</b>, not as cash — its dollar value will drift with the
@@ -372,7 +611,7 @@
             <tbody>
               <tr><td>You spend on crypto</td><td>~$20 (to safely clear the $15 threshold)</td></tr>
               <tr><td>Fees on the purchase</td><td>Roughly 1–4%, depending on payment method</td></tr>
-              <tr><td class="net">You receive in Bitcoin</td><td class="net">+$20, 45 days after the qualifying purchase</td></tr>
+              <tr><td class="net">You receive in Bitcoin</td><td class="net">+$20, within 5–15 days of the purchase</td></tr>
               <tr><td>Net bonus</td><td class="net">≈ <b>+$2 to +$5</b> in crypto, once fees are netted out</td></tr>
             </tbody>
           </table>
@@ -418,7 +657,7 @@
           </li>
           <li>
             <svg class="ic no" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2"/><path d="M7 7l6 6M13 7l-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            <span><b>Payouts are not guaranteed, and it's a limited-time offer.</b> Rewards are paid 45 days after the qualifying purchase. Coinbase reserves the right to modify, suspend, or terminate the program at any time.</span>
+            <span><b>Payouts are not guaranteed, and it's a limited-time offer.</b> Rewards are paid within 5–15 days of the qualifying purchase. Coinbase reserves the right to modify, suspend, or terminate the program at any time.</span>
           </li>
           <li>
             <svg class="ic no" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2"/><path d="M7 7l6 6M13 7l-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -490,13 +729,14 @@
         <summary>How long until the $20 shows up?</summary>
         <div class="ans">
           <p>
-            <b>45 days after your qualifying purchase.</b> That is the payout window for this
-            promotion — far longer than most people expect, so a missing $20 in the first week is not
-            a problem and is not worth a support ticket.
+            <b>Within 5–15 days of your qualifying purchase.</b> That is the window Coinbase gives
+            for eligible reward payouts, so a reward that has not landed by day three is normal and
+            is not worth a support ticket.
           </p>
           <p>
             When it does land, check your <b>Bitcoin balance</b> rather than your cash balance, since
-            that is where the reward is credited.
+            that is where the reward is credited. Past 15 days with nothing showing is the point to
+            contact Coinbase support.
           </p>
         </div>
       </details>
@@ -670,6 +910,31 @@
     bar.style.width = (steps.length ? (n / steps.length) * 100 : 0) + '%';
     bar.parentNode.setAttribute('aria-label', n + ' of ' + steps.length + ' steps complete');
   }
+})();
+</script>
+<script>
+/* Colour theme switcher. The choice is stored in this browser only. */
+(function(){
+  var COLORS = { blue:'#0052ff', dark:'#0a0b0d', light:'#f7f8fb' };
+  var KEY = 'cb-guide-theme';
+  var btns = Array.prototype.slice.call(document.querySelectorAll('[data-theme-set]'));
+  var meta = document.getElementById('metaTheme');
+
+  function apply(t, save){
+    if (t !== 'blue' && t !== 'dark' && t !== 'light') t = 'blue';
+    document.documentElement.setAttribute('data-theme', t);
+    btns.forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-theme-set') === t ? 'true' : 'false');
+    });
+    if (meta) meta.setAttribute('content', COLORS[t]);
+    if (save) { try { localStorage.setItem(KEY, t); } catch(e){} }
+  }
+
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.getAttribute('data-theme-set'), true); });
+  });
+
+  apply(document.documentElement.getAttribute('data-theme') || 'blue', false);
 })();
 </script>
 </body>

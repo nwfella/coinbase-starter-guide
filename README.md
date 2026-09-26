@@ -5,7 +5,9 @@ new-customer referral promotion: open an account through a referral link, buy
 $15+ of any crypto, receive $20 in Bitcoin 45 days after the qualifying purchase. New
 customers only.
 
-**Live:** _pending Cloudflare Pages deploy_ — see [Deploy](#deploy)
+**Live:** https://coinbase-starter-guide.pages.dev
+
+Source: https://github.com/nwfella/coinbase-starter-guide
 
 ## Why this is not on GitHub Pages
 
